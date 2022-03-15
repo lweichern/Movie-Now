@@ -4,8 +4,7 @@ import { GlobalStyles } from "./commonStyles/Global";
 
 // Components
 import Navbar from "./components/Navbar/Navbar";
-import Movie from "./components/Movies/Movie";
-import Hero from "./components/Home/Hero/Hero";
+import Home from "./components/Home";
 
 export default function App() {
   const theme = {
@@ -22,8 +21,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Navbar />
-      <Hero />
-      <Movie />
+      <Home />
     </ThemeProvider>
   );
 }

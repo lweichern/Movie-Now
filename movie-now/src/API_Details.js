@@ -6,6 +6,10 @@ const POPULAR_MOVIES_URL = `${BASE_URL}movie/popular?api_key=${API_KEY}&language
 
 const IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
 
+const BACKDROP_SIZE = "w1280";
+
+const POSTER_SIZE = "w780";
+
 const fetchMovie = async (movieId) => {
   const endpoint = `${BASE_URL}movie/${movieId}?api_key=${API_KEY}`;
   return await (await fetch(endpoint)).json();
@@ -22,6 +26,8 @@ export default {
   SEARCH_MOVIE_URL,
   POPULAR_MOVIES_URL,
   IMAGE_BASE_URL,
+  BACKDROP_SIZE,
+  POSTER_SIZE,
   fetchMovie,
   fetchMovieCredits,
 };
