@@ -7,9 +7,12 @@ export const StyledHeader = styled.div`
 
 export const HeroImage = styled.img`
   width: 100vw;
-  height: 80vh;
+  height: 90vh;
   object-fit: cover;
-  filter: blur(6px);
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    height: auto;
+  }
 `;
 
 export const HeroContent = styled.div`
@@ -44,10 +47,6 @@ export const LeftImage = styled(motion.img)`
   object-fit: cover;
   transition: 0.5s;
   object-position: center center;
-
-  &:hover {
-    width: 100%;
-  }
 `;
 
 export const RightImageContainer = styled.div`
