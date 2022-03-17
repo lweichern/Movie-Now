@@ -3,6 +3,7 @@ const API_KEY = "c6c901feb8c155385f1c0332330cb239";
 
 const SEARCH_MOVIE_URL = `${BASE_URL}search/movie?api_key=${API_KEY}&language=en-US&query=`;
 const POPULAR_MOVIES_URL = `${BASE_URL}movie/popular?api_key=${API_KEY}&language=en-US`;
+const TRENDING_MOVIES_URL = `${BASE_URL}trending/all/day?api_key=${API_KEY}`;
 
 const IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
 
@@ -25,6 +26,7 @@ export default {
   API_KEY,
   SEARCH_MOVIE_URL,
   POPULAR_MOVIES_URL,
+  TRENDING_MOVIES_URL,
   IMAGE_BASE_URL,
   BACKDROP_SIZE,
   POSTER_SIZE,

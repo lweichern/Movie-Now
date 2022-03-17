@@ -1,10 +1,19 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./commonStyles/Global";
+import {
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  HashRouter,
+} from "react-router-dom";
 
 // Components
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home";
+import Footer from "./components/Footer/Footer";
+import SignIn from "./components/SignIn/SignIn";
+import SignUp from "./components/SignUp/SignUp";
 
 export default function App() {
   const theme = {
@@ -19,9 +28,16 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <Navbar />
-      <Home />
+      <Router>
+        <GlobalStyles />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+        </Routes>
+        <Footer />
+      </Router>
     </ThemeProvider>
   );
 }

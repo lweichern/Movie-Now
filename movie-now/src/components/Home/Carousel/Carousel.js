@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   Title,
@@ -22,9 +22,22 @@ import api_details from "../../../API_Details";
 import { Container } from "../../../commonStyles/Container.styled";
 
 export default function Carousel({ movieList }) {
+  const [stopCarousel, setStopCarousel] = useState(false);
+  const swiperRef = useRef(null);
+
+  // Use theme from App.js
   const theme = useTheme();
 
-  console.log(theme);
+  console.log(stopCarousel);
+
+  // Stop and start carousel when mouse hover
+  useEffect(() => {
+    if (stopCarousel) {
+      swiperRef.current.swiper.autoplay.stop();
+    } else {
+      swiperRef.current.swiper.autoplay.start();
+    }
+  }, [stopCarousel]);
 
   // Framer motion variants
   const imageVariants = {
@@ -77,16 +90,22 @@ export default function Carousel({ movieList }) {
             clickable: true,
           }}
           navigation={true}
-          modules={[Lazy, Pagination, Navigation]}
+          modules={[Lazy, Pagination, Navigation, Autoplay]}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
           }}
           className="mySwiper"
+          ref={swiperRef}
         >
           {movieList.map((movie) => {
             return (
-              <SwiperSlide style={{ width: "33%" }} key={movie.id}>
+              <SwiperSlide
+                style={{ width: "33%" }}
+                key={movie.id}
+                onMouseOver={() => setStopCarousel(true)}
+                onMouseOut={() => setStopCarousel(false)}
+              >
                 <SwiperSlideContainer
                   initial="rest"
                   whileHover="hover"

@@ -27,4 +27,19 @@ export const StyledLinks = styled.ul`
 export const StyledLinkItems = styled.li`
   list-style: none;
   margin: 0 0.5rem;
+  color: #fff;
+  text-decoration: none;
+`;
+
+export const StyledSignIn = styled.h4`
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: 0.2s;
+  border-radius: 0.2rem;
+  color: #fff;
+
+  &:hover {
+    background: #fff;
+    color: ${({ theme }) => theme.colors.content1};
+  }
 `;

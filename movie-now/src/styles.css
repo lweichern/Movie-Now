@@ -37,3 +37,12 @@
 .swiper-pagination {
   display: none;
 }
+
+a {
+  text-decoration: none;
+  outline: none;
+}
+
+.input {
+  width: 70%;
+}
