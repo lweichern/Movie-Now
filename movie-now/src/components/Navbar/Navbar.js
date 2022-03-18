@@ -21,7 +21,10 @@ export default function Navbar() {
               <StyledLinkItems>Home</StyledLinkItems>
             </Link>
 
-            <StyledLinkItems>Movies</StyledLinkItems>
+            <Link to={"/movies"}>
+              <StyledLinkItems>Movies</StyledLinkItems>
+            </Link>
+
             <StyledLinkItems>Actors</StyledLinkItems>
             <StyledLinkItems>Contact Us</StyledLinkItems>
           </StyledLinks>

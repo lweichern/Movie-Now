@@ -21,7 +21,7 @@ import api_details from "../../../API_Details";
 
 import { Container } from "../../../commonStyles/Container.styled";
 
-export default function Carousel({ movieList }) {
+export default function Carousel({ movieList, carouselTitle }) {
   const [stopCarousel, setStopCarousel] = useState(false);
   const swiperRef = useRef(null);
 
@@ -75,7 +75,7 @@ export default function Carousel({ movieList }) {
   return (
     <>
       <Container>
-        <Title>Featured Today</Title>
+        <Title>{carouselTitle}</Title>
         <Swiper
           style={{
             "--swiper-navigation-color": theme.colors.content1,
@@ -118,7 +118,10 @@ export default function Carousel({ movieList }) {
                     variants={imageVariants}
                   />
                   <SwiperMovieTitleContainer variants={textVariants}>
-                    <SwiperMovieTitle>{movie.title}</SwiperMovieTitle>
+                    {console.log(movie)}
+                    <SwiperMovieTitle>
+                      {movie.title !== undefined ? movie.title : movie.name}
+                    </SwiperMovieTitle>
                   </SwiperMovieTitleContainer>
                   <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
                 </SwiperSlideContainer>

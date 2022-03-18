@@ -18,7 +18,7 @@ export default function Footer() {
   return (
     <FooterContainer>
       <SocialIcons>
-        <FaTwitter />
+        <FaTwitter style={{ overflow: "visible" }} />
         <FaInstagram />
         <FaDiscord />
         <FaFacebook />

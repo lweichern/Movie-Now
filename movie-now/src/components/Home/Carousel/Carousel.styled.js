@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
+
 export const Title = styled.h1`
   color: ${({ theme }) => theme.colors.content1};
 `;

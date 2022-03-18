@@ -11,6 +11,7 @@ import {
 // Components
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home";
+import Movie from "./components/Movies";
 import Footer from "./components/Footer/Footer";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
@@ -33,6 +34,7 @@ export default function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/movies" element={<Movie />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
         </Routes>

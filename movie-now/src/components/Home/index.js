@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Movie from "../../components/Movies/Movie";
 import Hero from "../Home/Hero/Hero";
 import Carousel from "../Home/Carousel/Carousel";
 import api_details from "../../API_Details";
 
 export default function Index() {
   const [movies, setMovies] = useState([]);
+  const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
     fetchMovie();
+    fetchTrendingMovie();
   }, []);
   console.log(movies);
 
@@ -16,6 +17,13 @@ export default function Index() {
     fetch(api_details.POPULAR_MOVIES_URL)
       .then((res) => res.json())
       .then((data) => setMovies(data.results))
+      .catch((err) => console.log(err));
+  };
+
+  const fetchTrendingMovie = () => {
+    fetch(api_details.TRENDING_MOVIES_URL)
+      .then((res) => res.json())
+      .then((data) => setTrendingMovies(data.results))
       .catch((err) => console.log(err));
   };
 
@@ -28,8 +36,11 @@ export default function Index() {
             image2={`${api_details.IMAGE_BASE_URL}${api_details.BACKDROP_SIZE}${movies[1].backdrop_path}`}
             image3={`${api_details.IMAGE_BASE_URL}${api_details.BACKDROP_SIZE}${movies[2].backdrop_path}`}
           />
-          <Carousel movieList={movies} />
-          <Movie />
+          <Carousel movieList={movies} carouselTitle="Featured Today" />
+          <Carousel
+            movieList={trendingMovies}
+            carouselTitle="Trending Movies"
+          />
         </>
       )}
     </>
