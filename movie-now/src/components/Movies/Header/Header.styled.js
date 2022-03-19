@@ -24,7 +24,7 @@ export const BlurredOverlay = styled.div`
 `;
 
 export const MovieCard = styled.div`
-  width: 50%;
+  width: 60%;
   border-radius: 0.3rem;
   overflow: hidden;
   display: flex;
@@ -32,12 +32,12 @@ export const MovieCard = styled.div`
 
 export const MovieCardImage = styled.img`
   border-radius: 0.3rem;
-  width: 50%;
+  width: 40%;
   object-fit: cover;
 `;
 
 export const Content = styled.div`
-  width: 50%;
+  width: 60%;
   padding: 0.8rem;
   color: #fff;
   bottom: 0;
@@ -50,7 +50,6 @@ export const Content = styled.div`
   border-bottom-right-radius: 0.4rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
 `;
 
@@ -60,7 +59,37 @@ export const Title = styled.h1`
 
 export const Synopsis = styled.p``;
 
-export const MovieDetails = styled.div``;
-export const Ratings = styled.div``;
+export const MovieDetails = styled.div`
+  display: flex;
+
+  .info-column {
+    margin: 0 15px;
+
+    :first-child {
+      margin-left: 0;
+    }
+
+    :last-child {
+      margin-right: 0;
+    }
+  }
+
+  & p {
+    font-size: 0.9rem;
+  }
+`;
+
+export const Ratings = styled.div`
+  .ratings-score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    background: ${({ theme }) => theme.colors.content1};
+    border-radius: 50%;
+    color: #fff;
+  }
+`;
 export const Director = styled.div``;
 export const RunTime = styled.div``;

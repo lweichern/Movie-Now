@@ -21,21 +21,21 @@ import api_details from "../../../API_Details";
 
 import { Container } from "../../../commonStyles/Container.styled";
 
-export default function Carousel({ movieList, carouselTitle }) {
+export default function Carousel({ movieList, carouselTitle, autoplay }) {
   const [stopCarousel, setStopCarousel] = useState(false);
   const swiperRef = useRef(null);
 
   // Use theme from App.js
   const theme = useTheme();
 
-  console.log(stopCarousel);
-
   // Stop and start carousel when mouse hover
   useEffect(() => {
-    if (stopCarousel) {
-      swiperRef.current.swiper.autoplay.stop();
-    } else {
-      swiperRef.current.swiper.autoplay.start();
+    if (autoplay) {
+      if (stopCarousel) {
+        swiperRef.current.swiper.autoplay.stop();
+      } else {
+        swiperRef.current.swiper.autoplay.start();
+      }
     }
   }, [stopCarousel]);
 
@@ -90,7 +90,11 @@ export default function Carousel({ movieList, carouselTitle }) {
             clickable: true,
           }}
           navigation={true}
-          modules={[Lazy, Pagination, Navigation, Autoplay]}
+          modules={
+            autoplay
+              ? [Lazy, Pagination, Navigation, Autoplay]
+              : [Lazy, Pagination, Navigation]
+          }
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,

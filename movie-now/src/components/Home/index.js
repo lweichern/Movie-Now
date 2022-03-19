@@ -36,10 +36,15 @@ export default function Index() {
             image2={`${api_details.IMAGE_BASE_URL}${api_details.BACKDROP_SIZE}${movies[1].backdrop_path}`}
             image3={`${api_details.IMAGE_BASE_URL}${api_details.BACKDROP_SIZE}${movies[2].backdrop_path}`}
           />
-          <Carousel movieList={movies} carouselTitle="Featured Today" />
+          <Carousel
+            movieList={movies}
+            carouselTitle="Featured Today"
+            autoplay={true}
+          />
           <Carousel
             movieList={trendingMovies}
             carouselTitle="Trending Movies"
+            autoplay={true}
           />
         </>
       )}
