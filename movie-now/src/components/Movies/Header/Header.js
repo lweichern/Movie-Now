@@ -19,7 +19,7 @@ export default function Header({ headerMovie }) {
   const [movie, setMovie] = useState();
   const [directors, setDirectors] = useState([]);
 
-  console.log(movie);
+  // console.log(movie);
 
   useEffect(() => {
     fetchMovie();

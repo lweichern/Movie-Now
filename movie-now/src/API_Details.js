@@ -6,6 +6,7 @@ const POPULAR_MOVIES_URL = `${BASE_URL}movie/popular?api_key=${API_KEY}&language
 const TRENDING_MOVIES_URL = `${BASE_URL}trending/all/day?api_key=${API_KEY}`;
 const NOW_PLAYING_MOVIES_URL = `${BASE_URL}movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`;
 const ALL_GENRES_URL = `${BASE_URL}genre/movie/list?api_key=${API_KEY}&language=en-US`;
+const TOP_RATED_MOVIES_URL = `${BASE_URL}movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`;
 
 const IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
 
@@ -33,6 +34,16 @@ const fetchMoviesByGenre = async (movieGenre) => {
   return await (await fetch(endpoint)).json();
 };
 
+const fetchMovieTrailer = async (movieId) => {
+  const endpoint = `${BASE_URL}movie/${movieId}/videos?api_key=${API_KEY}`;
+  return await (await fetch(endpoint)).json();
+};
+
+const fetchTopRatedMovieByGenre = async (genreId) => {
+  const endpoint = `${BASE_URL}movie/top_rated?api_key=${API_KEY}&language=en-US&with_genres=${genreId}`;
+  return await (await fetch(endpoint)).json();
+};
+
 export default {
   BASE_URL,
   API_KEY,
@@ -48,4 +59,6 @@ export default {
   fetchMovieCredits,
   fetchSimilarMovies,
   fetchMoviesByGenre,
+  fetchMovieTrailer,
+  fetchTopRatedMovieByGenre,
 };
