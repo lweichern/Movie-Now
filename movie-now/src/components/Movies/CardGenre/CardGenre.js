@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardImage, CardTextTitle } from "./CardGenre.styled";
 import api_details from "../../../API_Details";
+import { Link } from "react-router-dom";
 
 export default function CardGenre({ genre }) {
   const [movie, setMovie] = useState();
@@ -53,20 +54,22 @@ export default function CardGenre({ genre }) {
   };
 
   return (
-    <Card initial="rest" whileHover="hover" animate="rest">
-      {/* <CardImage
+    <Link to={`/movies/genre/${genre.id}`} style={{ width: "30%" }}>
+      <Card initial="rest" whileHover="hover" animate="rest">
+        {/* <CardImage
         src={`${api_details.IMAGE_BASE_URL}${api_details.BACKDROP_SIZE}${
           movie !== undefined && movie.backdrop_path
         }`}
       /> */}
-      {movie !== undefined && (
-        <CardImage
-          src={`${api_details.IMAGE_BASE_URL}${api_details.BACKDROP_SIZE}${movie.backdrop_path}`}
-          variants={imageVariants}
-        />
-      )}
+        {movie !== undefined && (
+          <CardImage
+            src={`${api_details.IMAGE_BASE_URL}${api_details.BACKDROP_SIZE}${movie.backdrop_path}`}
+            variants={imageVariants}
+          />
+        )}
 
-      <CardTextTitle variants={textVariants}>{genre.name}</CardTextTitle>
-    </Card>
+        <CardTextTitle variants={textVariants}>{genre.name}</CardTextTitle>
+      </Card>
+    </Link>
   );
 }

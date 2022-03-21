@@ -15,6 +15,7 @@ import Movie from "./components/Movies";
 import Footer from "./components/Footer/Footer";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
+import Genre from "./components/Movies/Genre/Genre";
 
 export default function App() {
   const theme = {
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="/movies" element={<Movie />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/movies/genre/:genre" exact element={<Genre />} />
         </Routes>
         <Footer />
       </Router>
