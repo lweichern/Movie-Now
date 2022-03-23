@@ -1,4 +1,5 @@
 const BASE_URL = "https://api.themoviedb.org/3/";
+const BASE_IMAGE_URL = "http://image.tmdb.org/t/p/";
 const API_KEY = "c6c901feb8c155385f1c0332330cb239";
 
 const SEARCH_MOVIE_URL = `${BASE_URL}search/movie?api_key=${API_KEY}&language=en-US&query=`;
@@ -44,8 +45,19 @@ const fetchTopRatedMovieByGenre = async (genreId) => {
   return await (await fetch(endpoint)).json();
 };
 
+const fetchPopularMovieByGenre = async (genreId, pageNum) => {
+  const endpoint = `${BASE_URL}movie/popular?api_key=${API_KEY}&language=en-US&with_genres=${genreId}&page=${pageNum}`;
+  return await (await fetch(endpoint)).json();
+};
+
+const fetchMoviesThatActorActsIn = async (actorId) => {
+  const endpoint = `${BASE_URL}person/${actorId}/movie_credits?api_key=${API_KEY}&page=1`;
+  return await (await fetch(endpoint)).json();
+};
+
 export default {
   BASE_URL,
+  BASE_IMAGE_URL,
   API_KEY,
   SEARCH_MOVIE_URL,
   POPULAR_MOVIES_URL,
@@ -61,4 +73,6 @@ export default {
   fetchMoviesByGenre,
   fetchMovieTrailer,
   fetchTopRatedMovieByGenre,
+  fetchPopularMovieByGenre,
+  fetchMoviesThatActorActsIn,
 };

@@ -16,6 +16,8 @@ import Footer from "./components/Footer/Footer";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
 import Genre from "./components/Movies/Genre/Genre";
+import MovieDetails from "./components/MovieDetails/MovieDetails";
+import Actor from "./components/Movies/Actor/Actor";
 
 export default function App() {
   const theme = {
@@ -39,6 +41,12 @@ export default function App() {
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/movies/genre/:genre" exact element={<Genre />} />
+          <Route
+            path="/movies/movie-details/:movieId"
+            exact
+            element={<MovieDetails />}
+          />
+          <Route path="/actor/:actorId" exact element={<Actor />} />
         </Routes>
         <Footer />
       </Router>

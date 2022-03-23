@@ -6,4 +6,14 @@ const convertTime = (time) => {
   return `${hours}hr ${minutes}min`;
 };
 
-export default { convertTime };
+// Convert a number to money formatting
+const convertMoney = (money) => {
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 0,
+  });
+  return formatter.format(money);
+};
+
+export default { convertTime, convertMoney };

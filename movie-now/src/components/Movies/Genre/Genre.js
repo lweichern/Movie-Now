@@ -1,23 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useTheme } from "styled-components";
 import api_details from "../../../API_Details";
 import { Container } from "../../../commonStyles/Container.styled";
 import { Flex } from "../../../commonStyles/Flex.styled";
+import Spinner from "../../../commonStyles/Spinner/Spinner";
+import Header from "../Header/Header";
 import MovieCards from "../MovieCards/MovieCards";
-import { GenreTitle } from "./Genre.styled";
+import { ButtonContainer, GenreTitle, LoadMoreBtn } from "./Genre.styled";
+import Grid from "../../../commonStyles/Grid/Grid";
 
 export default function Genre() {
+  const theme = useTheme();
   const { genre } = useParams();
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
   const [genreTitle, setGenreTitle] = useState("");
+  const [page, setPage] = useState(1);
+  const [spinner, setSpinner] = useState(false);
 
-  console.log(genreTitle);
+  console.log(movies);
 
   useEffect(() => {
-    fetchTopRatedMovieByGenre();
     fetchAllGenre();
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      fetchPopularMovieByGenre();
+      setSpinner(false);
+    }, 500);
+  }, [page]);
 
   useEffect(() => {
     genres.map((item) => {
@@ -27,10 +40,14 @@ export default function Genre() {
     });
   });
 
-  const fetchTopRatedMovieByGenre = async () => {
+  const fetchPopularMovieByGenre = async () => {
     try {
-      const movie = await api_details.fetchTopRatedMovieByGenre(genre);
-      setMovies(movie.results);
+      const movie = await api_details.fetchPopularMovieByGenre(genre, page);
+
+      setMovies((prevMovies) =>
+        // convert movie.results from an object to an array
+        page > 1 ? [...prevMovies, ...movie.results] : [...movie.results]
+      );
     } catch (error) {
       console.log(error);
     }
@@ -43,15 +60,30 @@ export default function Genre() {
       .catch((err) => console.log(err));
   };
 
+  const handlePageIncrement = () => {
+    setPage((prev) => prev + 1);
+    setSpinner(true);
+  };
+
   return (
-    <Container>
-      <GenreTitle>Top Rated {genreTitle} Movie</GenreTitle>
-      <Flex>
-        {movies.length !== 0 &&
-          movies.map((movie) => {
-            return <MovieCards key={movie.id} movie={movie} />;
-          })}
-      </Flex>
-    </Container>
+    <>
+      {movies.length !== 0 && <Header headerMovie={movies[0]} />}
+      <Container>
+        <Grid headerTitle={`Popular ${genreTitle} Movie`} movieList={movies} />
+        <ButtonContainer>
+          {!spinner ? (
+            <LoadMoreBtn
+              initial={{ scale: 1, background: theme.colors.content1 }}
+              whileHover={{ scale: 1.04, background: "#9d1231" }}
+              onClick={handlePageIncrement}
+            >
+              Load More
+            </LoadMoreBtn>
+          ) : (
+            <Spinner></Spinner>
+          )}
+        </ButtonContainer>
+      </Container>
+    </>
   );
 }

@@ -93,3 +93,5 @@ export const Ratings = styled.div`
 `;
 export const Director = styled.div``;
 export const RunTime = styled.div``;
+
+export const Budget = styled.div``;

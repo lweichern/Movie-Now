@@ -20,6 +20,7 @@ import { Lazy, Pagination, Navigation, Autoplay } from "swiper";
 import api_details from "../../../API_Details";
 
 import { Container } from "../../../commonStyles/Container.styled";
+import { Link } from "react-router-dom";
 
 export default function Carousel({ movieList, carouselTitle, autoplay }) {
   const [stopCarousel, setStopCarousel] = useState(false);
@@ -110,25 +111,27 @@ export default function Carousel({ movieList, carouselTitle, autoplay }) {
                 onMouseOver={() => setStopCarousel(true)}
                 onMouseOut={() => setStopCarousel(false)}
               >
-                <SwiperSlideContainer
-                  initial="rest"
-                  whileHover="hover"
-                  animate="rest"
-                >
-                  <SwiperImage
-                    data-src={`${api_details.IMAGE_BASE_URL}${api_details.BACKDROP_SIZE}${movie.backdrop_path}`}
-                    className="swiper-lazy"
-                    style={{ width: "100%", overflow: "visible" }}
-                    variants={imageVariants}
-                  />
-                  <SwiperMovieTitleContainer variants={textVariants}>
-                    {console.log(movie)}
-                    <SwiperMovieTitle>
-                      {movie.title !== undefined ? movie.title : movie.name}
-                    </SwiperMovieTitle>
-                  </SwiperMovieTitleContainer>
-                  <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                </SwiperSlideContainer>
+                <Link to={`/movies/movie-details/${movie.id}`}>
+                  <SwiperSlideContainer
+                    initial="rest"
+                    whileHover="hover"
+                    animate="rest"
+                  >
+                    <SwiperImage
+                      data-src={`${api_details.IMAGE_BASE_URL}${api_details.BACKDROP_SIZE}${movie.backdrop_path}`}
+                      className="swiper-lazy"
+                      style={{ width: "100%", overflow: "visible" }}
+                      variants={imageVariants}
+                    />
+                    <SwiperMovieTitleContainer variants={textVariants}>
+                      {console.log(movie)}
+                      <SwiperMovieTitle>
+                        {movie.title !== undefined ? movie.title : movie.name}
+                      </SwiperMovieTitle>
+                    </SwiperMovieTitleContainer>
+                    <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                  </SwiperSlideContainer>
+                </Link>
               </SwiperSlide>
             );
           })}

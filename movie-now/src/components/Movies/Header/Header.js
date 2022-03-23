@@ -12,6 +12,8 @@ import {
   Ratings,
   Director,
   RunTime,
+  Revenue,
+  Budget,
 } from "./Header.styled";
 import calculations from "../../../Calculations";
 
@@ -81,6 +83,10 @@ export default function Header({ headerMovie }) {
                   <h4>Run Time</h4>
                   <p>{movie && calculations.convertTime(movie.runtime)}</p>
                 </RunTime>
+                <Budget className="info-column">
+                  <h4>Budget</h4>
+                  <p>{movie && calculations.convertMoney(movie.budget)}</p>
+                </Budget>
               </MovieDetails>
             </Content>
           </MovieCard>

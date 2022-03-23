@@ -7,70 +7,52 @@ import {
   MovieDetails,
 } from "../MovieCards/MovieCards.styled";
 import API_Details from "../../../API_Details";
+import { Link } from "react-router-dom";
 
 export default function MovieCards({ movie }) {
-  const imageVariants = {
+  const cardVariants = {
     rest: {
-      opacity: 1,
       scale: 1,
+      y: 50,
+      opacity: 0,
     },
     hover: {
-      opacity: 0.3,
-      scale: 1.05,
+      scale: 1.02,
       transition: {
-        duration: 0.4,
-        type: "tween",
-        ease: "easeOut",
+        duration: 0.2,
       },
     },
-  };
-
-  const textVariants = {
-    rest: {
-      opacity: 0,
-      y: 20,
-    },
-    hover: {
-      opacity: 1,
+    show: {
       y: 0,
+      opacity: 1,
       transition: {
         duration: 0.4,
         type: "tween",
         ease: "easeOut",
-      },
-    },
-  };
-
-  const ratingsVariants = {
-    rest: {
-      opacity: 0,
-      y: 20,
-    },
-    hover: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.4,
-        type: "tween",
-        ease: "easeOut",
-        delay: 0.1,
       },
     },
   };
 
   return (
-    <Card initial="rest" whileHover="hover" animate="rest">
-      <CardImage
-        src={`${API_Details.IMAGE_BASE_URL}${API_Details.POSTER_SIZE}${movie.poster_path}`}
-        alt={`${movie.title} poster image`}
-        variants={imageVariants}
-      />
-      <MovieDetails>
-        <MovieTitle variants={textVariants}>{movie.title}</MovieTitle>
-        <MovieRatings variants={ratingsVariants}>
-          {movie.vote_average}
-        </MovieRatings>
-      </MovieDetails>
-    </Card>
+    <Link
+      to={`/movies/movie-details/${movie.id}`}
+      style={{ width: "23%", margin: "0.8rem 0" }}
+    >
+      <Card
+        variants={cardVariants}
+        initial="rest"
+        whileHover="hover"
+        whileInView="show"
+      >
+        <CardImage
+          src={`${API_Details.IMAGE_BASE_URL}${API_Details.POSTER_SIZE}${movie.poster_path}`}
+          alt={`${movie.title} poster image`}
+        />
+        <MovieDetails>
+          <MovieTitle>{movie.title}</MovieTitle>
+          <MovieRatings>{movie.vote_average}</MovieRatings>
+        </MovieDetails>
+      </Card>
+    </Link>
   );
 }
