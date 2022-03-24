@@ -40,7 +40,18 @@ export default function App() {
           <Route path="/movies" element={<Movie />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/movies/genre/:genre" exact element={<Genre />} />
+          <Route path="/movies/genre/:genre" element={<Genre />} />
+          {/* <Route
+            path="/movies/genre/:genre"
+            render={(props) => {
+              const {
+                match: {
+                  params: { genre },
+                },
+              } = props;
+              return <Genre key={`genre=${genre}`} {...props} />;
+            }}
+          /> */}
           <Route
             path="/movies/movie-details/:movieId"
             exact

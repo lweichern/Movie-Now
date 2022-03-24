@@ -1,15 +1,56 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardImage,
   MovieRatings,
   MovieTitle,
   MovieDetails,
+  MovieGenreContainer,
+  MovieGenre,
 } from "../MovieCards/MovieCards.styled";
 import API_Details from "../../../API_Details";
 import { Link } from "react-router-dom";
 
 export default function MovieCards({ movie }) {
+  const [genreList, setGenreList] = useState([]);
+  const [url, setUrl] = useState(window.location.href);
+
+  console.log(url);
+
+  useEffect(() => {
+    fetchAllGenre();
+  }, []);
+
+  console.log(genreList);
+
+  const fetchAllGenre = () => {
+    fetch(API_Details.ALL_GENRES_URL)
+      .then((res) => res.json())
+      .then((data) => setGenreList(data.genres))
+      .catch((err) => console.log(err));
+  };
+
+  const getGenreTitle = (genreId) => {
+    let genreName = "";
+
+    genreList.map((item) => {
+      if (item.id === genreId) {
+        genreName = item.name;
+      }
+    });
+
+    return genreName;
+  };
+
+  const handleUrlChange = () => {
+    console.log("Hello");
+    setUrl(window.location.href);
+  };
+
+  // useEffect(() => {
+  //   getGenreTitle(28);
+  // }, []);
+
   const cardVariants = {
     rest: {
       scale: 1,

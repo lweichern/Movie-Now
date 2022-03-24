@@ -40,7 +40,7 @@ export default function MovieDetails() {
 
   return (
     <div>
-      {movie && <Header headerMovie={movie} />}
+      {movie && <Header headerMovie={movie} genreList={movie.genres} />}
       <Container>
         <Grid headerTitle="Actors" castList={movieCredits} />
       </Container>

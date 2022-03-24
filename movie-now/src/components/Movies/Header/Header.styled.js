@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const BackgroundHeaderImage = styled.div`
   background: linear-gradient(
@@ -95,3 +96,20 @@ export const Director = styled.div``;
 export const RunTime = styled.div``;
 
 export const Budget = styled.div``;
+
+export const MovieGenreContainer = styled(motion.div)`
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+`;
+
+export const MovieGenre = styled(motion.div)`
+  color: #fff;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  background: ${({ theme }) => theme.colors.content1};
+
+  &:hover {
+    background: #991531;
+  }
+`;

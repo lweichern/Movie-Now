@@ -19,21 +19,15 @@ export const CardImage = styled(motion.img)`
   border-radius: 0.3rem;
 `;
 
-export const MovieDetails = styled.div`
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50%, -50%);
-  // text-align: center;
-`;
+export const MovieDetails = styled.div``;
 
 export const MovieTitle = styled(motion.h2)`
-  color: ${({ theme }) => theme.colors.content2};
+  color: ${({ theme }) => theme.colors.content1};
   padding-left: 0.8rem;
 `;
 
 export const MovieRatings = styled(motion.div)`
-  background: ${({ theme }) => theme.colors.content2};
+  background: ${({ theme }) => theme.colors.content1};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,4 +39,22 @@ export const MovieRatings = styled(motion.div)`
   position: absolute;
   top: 3%;
   right: 3%;
+`;
+
+export const MovieGenreContainer = styled(motion.div)`
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  padding-left: 0.8rem;
+`;
+
+export const MovieGenre = styled(motion.div)`
+  color: #fff;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  background: ${({ theme }) => theme.colors.content1};
+
+  &:hover {
+    background: #991531;
+  }
 `;

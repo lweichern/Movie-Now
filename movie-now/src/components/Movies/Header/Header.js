@@ -14,14 +14,17 @@ import {
   RunTime,
   Revenue,
   Budget,
+  MovieGenreContainer,
+  MovieGenre,
 } from "./Header.styled";
 import calculations from "../../../Calculations";
+import { Link } from "react-router-dom";
 
-export default function Header({ headerMovie }) {
+export default function Header({ headerMovie, genreList }) {
   const [movie, setMovie] = useState();
   const [directors, setDirectors] = useState([]);
 
-  // console.log(movie);
+  console.log(genreList);
 
   useEffect(() => {
     fetchMovie();
@@ -50,6 +53,18 @@ export default function Header({ headerMovie }) {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const getGenreTitle = (genreId) => {
+    let genreName = "";
+
+    genreList.map((item) => {
+      if (item.id === genreId) {
+        genreName = item.name;
+      }
+    });
+
+    return genreName;
   };
 
   return (
@@ -88,6 +103,18 @@ export default function Header({ headerMovie }) {
                   <p>{movie && calculations.convertMoney(movie.budget)}</p>
                 </Budget>
               </MovieDetails>
+              <h4>Genres</h4>
+              {genreList && (
+                <MovieGenreContainer>
+                  {genreList.map((genre) => {
+                    return (
+                      <Link to={`/movies/genre/${genre.id}`} key={genre.id}>
+                        <MovieGenre>{genre.name}</MovieGenre>
+                      </Link>
+                    );
+                  })}
+                </MovieGenreContainer>
+              )}
             </Content>
           </MovieCard>
         </BlurredOverlay>

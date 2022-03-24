@@ -19,8 +19,6 @@ export default function Genre() {
   const [page, setPage] = useState(1);
   const [spinner, setSpinner] = useState(false);
 
-  console.log(movies);
-
   useEffect(() => {
     fetchAllGenre();
   }, []);
