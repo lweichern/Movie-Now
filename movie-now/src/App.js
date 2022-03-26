@@ -17,7 +17,7 @@ import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
 import Genre from "./components/Movies/Genre/Genre";
 import MovieDetails from "./components/MovieDetails/MovieDetails";
-import Actor from "./components/Movies/Actor/Actor";
+import Actor from "./components/Actor/Actor";
 
 export default function App() {
   const theme = {

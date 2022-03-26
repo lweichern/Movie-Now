@@ -20,6 +20,8 @@ export default function ActorCards({ profile }) {
               ? `${API_Details.BASE_IMAGE_URL}${API_Details.POSTER_SIZE}/${profile.profile_path}`
               : NoImage
           }
+          loading="lazy"
+          alt={`${profile.name} profile image`}
         />
         <ActorDetails>
           <ActorName>{profile.name}</ActorName>

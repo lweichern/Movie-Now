@@ -7,6 +7,7 @@ export const StyledNavHeader = styled.nav`
   top: 0;
   left: 0;
   z-index: 2;
+  box-shadow: 2px -3px 14px #000;
 `;
 
 export const StyledNavContent = styled.nav`

@@ -19,6 +19,7 @@ import {
 } from "./Header.styled";
 import calculations from "../../../Calculations";
 import { Link } from "react-router-dom";
+import NoImage from "../../../images/no_image.jpg";
 
 export default function Header({ headerMovie, genreList }) {
   const [movie, setMovie] = useState();
@@ -75,7 +76,11 @@ export default function Header({ headerMovie, genreList }) {
         <BlurredOverlay>
           <MovieCard>
             <MovieCardImage
-              src={`${api_details.IMAGE_BASE_URL}${api_details.POSTER_SIZE}${headerMovie.poster_path}`}
+              src={
+                headerMovie.poster_path !== null
+                  ? `${api_details.IMAGE_BASE_URL}${api_details.POSTER_SIZE}${headerMovie.poster_path}`
+                  : NoImage
+              }
             />
             <Content>
               <Title>{headerMovie.title}</Title>
@@ -103,7 +108,7 @@ export default function Header({ headerMovie, genreList }) {
                   <p>{movie && calculations.convertMoney(movie.budget)}</p>
                 </Budget>
               </MovieDetails>
-              <h4>Genres</h4>
+              {genreList && <h4>Genres</h4>}
               {genreList && (
                 <MovieGenreContainer>
                   {genreList.map((genre) => {

@@ -10,6 +10,7 @@ import {
 } from "../MovieCards/MovieCards.styled";
 import API_Details from "../../../API_Details";
 import { Link } from "react-router-dom";
+import NoImage from "../../../images/no_image.jpg";
 
 export default function MovieCards({ movie }) {
   const [genreList, setGenreList] = useState([]);
@@ -86,8 +87,13 @@ export default function MovieCards({ movie }) {
         whileInView="show"
       >
         <CardImage
-          src={`${API_Details.IMAGE_BASE_URL}${API_Details.POSTER_SIZE}${movie.poster_path}`}
+          src={
+            movie.poster_path !== null
+              ? `${API_Details.IMAGE_BASE_URL}${API_Details.POSTER_SIZE}${movie.poster_path}`
+              : NoImage
+          }
           alt={`${movie.title} poster image`}
+          loading="lazy"
         />
         <MovieDetails>
           <MovieTitle>{movie.title}</MovieTitle>

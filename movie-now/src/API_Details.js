@@ -55,6 +55,11 @@ const fetchMoviesThatActorActsIn = async (actorId) => {
   return await (await fetch(endpoint)).json();
 };
 
+const fetchActorDetails = async (actorId) => {
+  const endpoint = `${BASE_URL}person/${actorId}?api_key=${API_KEY}`;
+  return await (await fetch(endpoint)).json();
+};
+
 export default {
   BASE_URL,
   BASE_IMAGE_URL,
@@ -75,4 +80,5 @@ export default {
   fetchTopRatedMovieByGenre,
   fetchPopularMovieByGenre,
   fetchMoviesThatActorActsIn,
+  fetchActorDetails,
 };
