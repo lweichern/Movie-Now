@@ -7,6 +7,7 @@ import {
   ActorDetails,
   ActorImage,
   ActorName,
+  Age,
   BackgroundHeaderImage,
   DateOfBirth,
   PlaceOfBirth,
@@ -14,6 +15,7 @@ import {
   PopularityScore,
 } from "./Header.styled";
 import NoImage from "../../../images/no_image.jpg";
+import Calculations from "../../../Calculations";
 
 export default function Header({ actorDetails }) {
   return (
@@ -43,6 +45,10 @@ export default function Header({ actorDetails }) {
               <h4>Birthdate</h4>
               <div>{actorDetails.birthday}</div>
             </DateOfBirth>
+            <Age>
+              <h4>Age</h4>
+              <div>{Calculations.convertAge(actorDetails.birthday)}</div>
+            </Age>
             <PlaceOfBirth>
               <h4>Place of Birth</h4>
               <div>{actorDetails.place_of_birth}</div>

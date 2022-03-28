@@ -16,13 +16,9 @@ export default function MovieCards({ movie }) {
   const [genreList, setGenreList] = useState([]);
   const [url, setUrl] = useState(window.location.href);
 
-  console.log(url);
-
   useEffect(() => {
     fetchAllGenre();
   }, []);
-
-  console.log(genreList);
 
   const fetchAllGenre = () => {
     fetch(API_Details.ALL_GENRES_URL)

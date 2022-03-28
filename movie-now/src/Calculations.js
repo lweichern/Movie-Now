@@ -16,4 +16,14 @@ const convertMoney = (money) => {
   return formatter.format(money);
 };
 
-export default { convertTime, convertMoney };
+const convertAge = (birthdate) => {
+  const today = new Date();
+  const thisYear = today.getFullYear();
+  const hyphenPosition = birthdate.indexOf("-");
+  const birthYear = parseInt(birthdate.slice(0, hyphenPosition));
+  const age = thisYear - birthYear;
+
+  return age.toString();
+};
+
+export default { convertTime, convertMoney, convertAge };

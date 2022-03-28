@@ -51,7 +51,33 @@ export const Content = styled.div`
   border-bottom-right-radius: 0.4rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: ${({ genreList }) =>
+    genreList !== undefined ? "space-between" : "center"};
+`;
+
+export const Tabs = styled.div`
+  display: ${({ genreList }) => (genreList !== undefined ? "flex" : "none")};
+  gap: 0.5rem;
+`;
+
+export const TabsContentMovieDetails = styled.div`
+  border-bottom: ${({ currentTab, theme }) =>
+    currentTab === "Movie Details"
+      ? `2px solid ${theme.colors.content1}`
+      : "2px solid transparent"};
+  color: #fff;
+  padding-bottom: 0.1rem;
+  cursor: pointer;
+`;
+
+export const TabsContentTrailer = styled.div`
+  border-bottom: ${({ currentTab, theme }) =>
+    currentTab === "Trailer"
+      ? `2px solid ${theme.colors.content1}`
+      : "2px solid transparent"};
+  color: #fff;
+  padding-bottom: 0.1rem;
+  cursor: pointer;
 `;
 
 export const Title = styled.h1`
@@ -112,4 +138,8 @@ export const MovieGenre = styled(motion.div)`
   &:hover {
     background: #991531;
   }
+`;
+
+export const Trailer = styled.iframe`
+  margin-top: 0.5rem;
 `;

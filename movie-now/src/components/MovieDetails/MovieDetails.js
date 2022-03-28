@@ -5,10 +5,12 @@ import Header from "../Movies/Header/Header";
 import ActorCards from "./ActorCards/ActorCards";
 import { Container } from "../../commonStyles/Container.styled";
 import Grid from "../../commonStyles/Grid/Grid";
+import Carousel from "../Home/Carousel/Carousel";
 
 export default function MovieDetails() {
   const [movie, setMovie] = useState();
   const [movieCredits, setMovieCredits] = useState();
+  const [recommendedMovies, setRecommendedMovies] = useState([]);
 
   const { movieId } = useParams();
 
@@ -17,8 +19,11 @@ export default function MovieDetails() {
     fetchMovieCredits();
   }, []);
 
-  console.log(movie);
-  console.log(movieCredits);
+  useEffect(() => {
+    fetchSimilarMovies();
+  }, [movieId]);
+
+  console.log(recommendedMovies);
 
   const fetchMovie = async () => {
     try {
@@ -38,11 +43,23 @@ export default function MovieDetails() {
     }
   };
 
+  const fetchSimilarMovies = async () => {
+    const recommendedMovies = await API_Details.fetchSimilarMovies(movieId);
+    setRecommendedMovies(recommendedMovies.results);
+  };
+
   return (
     <div>
       {movie && <Header headerMovie={movie} genreList={movie.genres} />}
       <Container>
         <Grid headerTitle="Actors" castList={movieCredits} />
+        {recommendedMovies.length !== 0 && (
+          <Carousel
+            carouselTitle="Recommended Movies"
+            movieList={recommendedMovies}
+            autoplay={true}
+          />
+        )}
       </Container>
     </div>
   );

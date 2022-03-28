@@ -37,6 +37,7 @@ const fetchMoviesByGenre = async (movieGenre) => {
 
 const fetchMovieTrailer = async (movieId) => {
   const endpoint = `${BASE_URL}movie/${movieId}/videos?api_key=${API_KEY}`;
+  console.log(endpoint);
   return await (await fetch(endpoint)).json();
 };
 
@@ -57,6 +58,12 @@ const fetchMoviesThatActorActsIn = async (actorId) => {
 
 const fetchActorDetails = async (actorId) => {
   const endpoint = `${BASE_URL}person/${actorId}?api_key=${API_KEY}`;
+  return await (await fetch(endpoint)).json();
+};
+
+const searchMovies = async (searchTerm, pageNum) => {
+  const endpoint =
+    searchTerm && `${SEARCH_MOVIE_URL}${searchTerm}&page=${pageNum}`;
   return await (await fetch(endpoint)).json();
 };
 
@@ -81,4 +88,5 @@ export default {
   fetchPopularMovieByGenre,
   fetchMoviesThatActorActsIn,
   fetchActorDetails,
+  searchMovies,
 };
