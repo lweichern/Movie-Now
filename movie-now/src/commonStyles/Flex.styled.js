@@ -1,6 +1,6 @@
 import styled from "styled-components";
-
-export const Flex = styled.div`
+import { motion } from "framer-motion";
+export const Flex = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -10,7 +10,7 @@ export default function Grid({ headerTitle, movieList, castList }) {
       {movieList && (
         <>
           <HeaderTitle>{headerTitle}</HeaderTitle>
-          <Flex style={{ alignItems: "stretch" }}>
+          <Flex style={{ alignItems: "stretch" }} layout>
             {movieList.length !== 0 &&
               movieList.map((item) => {
                 return <MovieCards key={item.id} movie={item} />;

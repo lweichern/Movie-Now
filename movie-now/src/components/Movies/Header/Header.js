@@ -24,15 +24,14 @@ import {
 import calculations from "../../../Calculations";
 import { Link } from "react-router-dom";
 import NoImage from "../../../images/no_image.jpg";
+import { motion, AnimatePresence } from "framer-motion";
+import { duration } from "@mui/material";
 
 export default function Header({ headerMovie, genreList }) {
   const [movie, setMovie] = useState();
   const [directors, setDirectors] = useState([]);
   const [headerTab, setHeaderTab] = useState("Movie Details");
   const [movieTrailerKey, setMovieTrailerKey] = useState();
-
-  console.log(headerTab);
-  console.log(genreList);
 
   useEffect(() => {
     fetchMovie();
@@ -42,6 +41,17 @@ export default function Header({ headerMovie, genreList }) {
   useEffect(() => {
     fetchMovieTrailer();
   }, [movie]);
+
+  const ChildVariants = {
+    hidden: {
+      opacity: 0,
+      y: 40,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+    },
+  };
 
   const fetchMovie = async () => {
     try {
@@ -128,41 +138,80 @@ export default function Header({ headerMovie, genreList }) {
                   Trailer
                 </TabsContentTrailer>
               </Tabs>
-              {headerTab === "Movie Details" ? (
-                <div>
-                  <Title>{headerMovie.title}</Title>
-                  <Synopsis>{headerMovie.overview}</Synopsis>
-                  <MovieDetails>
-                    <Ratings className="info-column">
-                      <h4>Ratings</h4>
-                      <div className="ratings-score">
-                        {movie && movie.vote_average}
-                      </div>
-                    </Ratings>
-                    <Director className="info-column">
-                      <h4>Director</h4>
-                      {directors.length !== 0 &&
-                        directors.map((director) => {
-                          return <p key={director.name}>{director.name}</p>;
-                        })}
-                    </Director>
-                    <RunTime className="info-column">
-                      <h4>Run Time</h4>
-                      <p>{movie && calculations.convertTime(movie.runtime)}</p>
-                    </RunTime>
-                    <Budget className="info-column">
-                      <h4>Budget</h4>
-                      <p>{movie && calculations.convertMoney(movie.budget)}</p>
-                    </Budget>
-                  </MovieDetails>
-                </div>
-              ) : (
-                <Trailer
-                  width="100%"
-                  height="70%"
-                  src={`https://www.youtube.com/embed/${movieTrailerKey}?autoplay=1&mute=1`}
-                ></Trailer>
-              )}
+              <AnimatePresence>
+                {headerTab === "Movie Details" ? (
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4 }}
+                    exit={{ opacity: 0, x: -20 }}
+                  >
+                    <Title>{headerMovie.title}</Title>
+                    <Synopsis>{headerMovie.overview}</Synopsis>
+                    <MovieDetails>
+                      <Ratings
+                        className="info-column"
+                        variants={ChildVariants}
+                        initial="hidden"
+                        animate="visible"
+                        transition={{ delay: 0.2 }}
+                      >
+                        <h4>Ratings</h4>
+                        <div className="ratings-score">
+                          {movie && movie.vote_average}
+                        </div>
+                      </Ratings>
+                      <Director
+                        className="info-column"
+                        variants={ChildVariants}
+                        initial="hidden"
+                        animate="visible"
+                        transition={{ delay: 0.35 }}
+                      >
+                        <h4>Director</h4>
+                        {directors.length !== 0 &&
+                          directors.map((director) => {
+                            return <p key={director.name}>{director.name}</p>;
+                          })}
+                      </Director>
+                      <RunTime
+                        className="info-column"
+                        variants={ChildVariants}
+                        initial="hidden"
+                        animate="visible"
+                        transition={{ delay: 0.4 }}
+                      >
+                        <h4>Run Time</h4>
+                        <p>
+                          {movie && calculations.convertTime(movie.runtime)}
+                        </p>
+                      </RunTime>
+                      <Budget
+                        className="info-column"
+                        variants={ChildVariants}
+                        initial="hidden"
+                        animate="visible"
+                        transition={{ delay: 0.5 }}
+                      >
+                        <h4>Budget</h4>
+                        <p>
+                          {movie && calculations.convertMoney(movie.budget)}
+                        </p>
+                      </Budget>
+                    </MovieDetails>
+                  </motion.div>
+                ) : (
+                  <Trailer
+                    width="100%"
+                    height="70%"
+                    src={`https://www.youtube.com/embed/${movieTrailerKey}?autoplay=1&mute=1`}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4 }}
+                    exit={{ opacity: 0, x: 20 }}
+                  ></Trailer>
+                )}
+              </AnimatePresence>
               {genreList && (
                 <div>
                   <h4>Genres</h4>

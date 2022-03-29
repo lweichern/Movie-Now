@@ -86,7 +86,7 @@ export const Title = styled.h1`
 
 export const Synopsis = styled.p``;
 
-export const MovieDetails = styled.div`
+export const MovieDetails = styled(motion.div)`
   display: flex;
 
   .info-column {
@@ -106,7 +106,7 @@ export const MovieDetails = styled.div`
   }
 `;
 
-export const Ratings = styled.div`
+export const Ratings = styled(motion.div)`
   .ratings-score {
     display: flex;
     align-items: center;
@@ -118,10 +118,10 @@ export const Ratings = styled.div`
     color: #fff;
   }
 `;
-export const Director = styled.div``;
-export const RunTime = styled.div``;
+export const Director = styled(motion.div)``;
+export const RunTime = styled(motion.div)``;
 
-export const Budget = styled.div``;
+export const Budget = styled(motion.div)``;
 
 export const MovieGenreContainer = styled(motion.div)`
   display: flex;

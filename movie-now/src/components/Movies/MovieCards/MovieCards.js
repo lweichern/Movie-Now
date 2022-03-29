@@ -11,6 +11,7 @@ import {
 import API_Details from "../../../API_Details";
 import { Link } from "react-router-dom";
 import NoImage from "../../../images/no_image.jpg";
+import { motion } from "framer-motion";
 
 export default function MovieCards({ movie }) {
   const [genreList, setGenreList] = useState([]);
@@ -81,6 +82,7 @@ export default function MovieCards({ movie }) {
         initial="rest"
         whileHover="hover"
         whileInView="show"
+        layout
       >
         <CardImage
           src={
