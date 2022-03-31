@@ -44,3 +44,33 @@ export const StyledSignIn = styled.h4`
     color: ${({ theme }) => theme.colors.content1};
   }
 `;
+
+export const StyledSignOut = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+`;
+
+export const Username = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #fff;
+  height: fit-content;
+  gap: 0.4rem;
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+`;
+
+export const SignOutButton = styled.h4`
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: 0.2s;
+  border-radius: 0.2rem;
+  color: #fff;
+
+  &:hover {
+    background: #fff;
+    color: ${({ theme }) => theme.colors.content1};
+  }
+`;

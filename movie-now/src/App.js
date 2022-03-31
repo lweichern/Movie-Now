@@ -19,6 +19,9 @@ import Genre from "./components/Movies/Genre/Genre";
 import MovieDetails from "./components/MovieDetails/MovieDetails";
 import Actor from "./components/Actor/Actor";
 
+// Redux
+import { selectUser } from "./redux/features/userSlice";
+
 export default function App() {
   const theme = {
     colors: {

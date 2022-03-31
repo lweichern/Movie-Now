@@ -36,7 +36,7 @@ export const RightContent = styled.div`
   gap: 1rem;
   padding: 2rem;
 
-  & > form > * {
+  & > form {
     display: flex;
     flex-direction: column;
     align-items: center;
