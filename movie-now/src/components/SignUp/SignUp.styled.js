@@ -10,7 +10,7 @@ export const SignUpContainer = styled.div`
 
 export const SignUpContent = styled(motion.div)`
   width: 70vw;
-  height: 80vh;
+  height: auto;
   border: 1px solid ${({ theme }) => theme.colors.content1};
   display: flex;
   align-items: center;
@@ -19,6 +19,16 @@ export const SignUpContent = styled(motion.div)`
   border-radius: 0.5rem;
   box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.3);
   overflow: hidden;
+
+  @media (max-width: ${({ theme }) => theme.tablet}) {
+    width: 90vw;
+    height: auto;
+  }
+
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    flex-direction: column;
+    height: auto;
+  }
 `;
 
 export const LeftContent = styled.div`
@@ -26,6 +36,10 @@ export const LeftContent = styled.div`
   background: ${({ theme }) => theme.colors.content1};
   // background: #fff;
   padding: 2rem;
+  height: 100%;
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    display: none;
+  }
 `;
 
 export const RightContent = styled.div`
@@ -34,7 +48,7 @@ export const RightContent = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  padding: 2rem;
+  // padding: 2rem;
 
   & > form {
     display: flex;
@@ -42,6 +56,14 @@ export const RightContent = styled.div`
     align-items: center;
     justify-content: center;
     gap: 1rem;
+  }
+
+  @media (max-width: ${({ theme }) => theme.tablet}) {
+    padding: 0;
+  }
+
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    width: 80%;
   }
 `;
 

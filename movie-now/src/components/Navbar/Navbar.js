@@ -53,9 +53,6 @@ export default function Navbar() {
             <Link to={"/movies"}>
               <StyledLinkItems>Movies</StyledLinkItems>
             </Link>
-
-            <StyledLinkItems>Actors</StyledLinkItems>
-            <StyledLinkItems>Contact Us</StyledLinkItems>
           </StyledLinks>
           {JSON.parse(window.localStorage.getItem("user")) === null ? (
             <Link to={"/sign-in"}>

@@ -81,9 +81,8 @@ export default function Carousel({ movieList, carouselTitle, autoplay }) {
           "--swiper-navigation-color": theme.colors.content1,
           "--swiper-pagination-color": theme.colors.content1,
         }}
-        slidesPerView={3}
-        spaceBetween={30}
-        slidesPerGroup={3}
+        slidesPerView={1}
+        spaceBetween={20}
         loop={true}
         lazy={true}
         pagination={{
@@ -98,6 +97,13 @@ export default function Carousel({ movieList, carouselTitle, autoplay }) {
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
+        }}
+        breakpoints={{
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            slidesPerGroup: 3,
+          },
         }}
         className="mySwiper"
         ref={swiperRef}

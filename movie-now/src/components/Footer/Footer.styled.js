@@ -33,6 +33,7 @@ export const FooterLinks = styled.ul`
   color: #fff;
   margin-top: 2rem;
   cursor: pointer;
+  flex-wrap: wrap;
 
   & > li {
     list-style: none;

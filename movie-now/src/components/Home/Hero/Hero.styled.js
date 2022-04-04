@@ -27,10 +27,22 @@ export const HeroContent = styled.div`
   width: 1200px;
   max-width: 100%;
   gap: 0.5rem;
+
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    flex-direction: column;
+  }
 `;
 
 export const LeftSection = styled(motion.div)`
   width: 40%;
+
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    width: 70%;
+
+    h1 {
+      text-align: center;
+    }
+  }
 `;
 
 export const RightSection = styled.div`
@@ -40,6 +52,10 @@ export const RightSection = styled.div`
   gap: 0.2rem;
   border-radius: 0.4rem;
   overflow: hidden;
+
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    width: 70%;
+  }
 `;
 
 export const LeftImage = styled(motion.img)`

@@ -1,6 +1,20 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
+export const OuterCard = styled.div`
+  width: 23%;
+  margin: 0.8rem 0;
+
+  @media (max-width: ${({ theme }) => theme.tablet}) {
+    width: 40%;
+    margin: 0.8rem auto;
+  }
+
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    width: 60%;
+  }
+`;
+
 export const Card = styled(motion.div)`
   width: 100%;
   height: 100%;

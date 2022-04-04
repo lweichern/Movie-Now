@@ -18,6 +18,15 @@ export const SignInContent = styled(motion.div)`
   border-radius: 0.5rem;
   box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.3);
   overflow: hidden;
+
+  @media (max-width: ${({ theme }) => theme.tablet}) {
+    width: 90vw;
+    height: auto;
+  }
+
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    flex-direction: column;
+  }
 `;
 
 export const LeftContent = styled.div`
@@ -25,6 +34,10 @@ export const LeftContent = styled.div`
   background: ${({ theme }) => theme.colors.content2};
   // background: #fff;
   padding: 2rem;
+
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    display: none;
+  }
 `;
 
 export const RightContent = styled.div`
@@ -41,6 +54,14 @@ export const RightContent = styled.div`
     align-items: center;
     justify-content: center;
     gap: 1rem;
+  }
+
+  @media (max-width: ${({ theme }) => theme.tablet}) {
+    padding: 0;
+  }
+
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    width: 80%;
   }
 `;
 

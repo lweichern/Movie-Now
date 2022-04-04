@@ -7,6 +7,7 @@ import {
   MovieDetails,
   MovieGenreContainer,
   MovieGenre,
+  OuterCard,
 } from "../MovieCards/MovieCards.styled";
 import API_Details from "../../../API_Details";
 import { Link } from "react-router-dom";
@@ -115,7 +116,7 @@ export default function MovieCards({ movie }) {
   };
 
   return (
-    <div style={{ width: "23%", margin: "0.8rem 0" }}>
+    <OuterCard>
       <Card
         variants={cardVariants}
         initial="rest"
@@ -148,6 +149,6 @@ export default function MovieCards({ movie }) {
           )}
         </MovieDetails>
       </Card>
-    </div>
+    </OuterCard>
   );
 }

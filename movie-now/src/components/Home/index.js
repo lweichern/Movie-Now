@@ -12,10 +12,6 @@ export default function Index() {
 
   const theme = useTheme();
 
-  const movieIdList = JSON.parse(
-    window.localStorage.getItem("user")
-  ).favoriteMovies;
-
   useEffect(() => {
     fetchMovie();
     fetchTrendingMovie();
@@ -57,7 +53,11 @@ export default function Index() {
               autoplay={true}
             />
             <h1 style={{ color: theme.colors.content1 }}>Favorite Movies</h1>
-            <Favorites />
+            {JSON.parse(window.localStorage.getItem("user")) !== null ? (
+              <Favorites />
+            ) : (
+              <h3>Please Login to add favorite movies.</h3>
+            )}
           </Container>
         </>
       )}

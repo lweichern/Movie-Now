@@ -12,6 +12,10 @@ export const BackgroundHeaderImage = styled.div`
   background-position: center;
   height: 800px;
   position: relative;
+
+  @media (max-width: ${({ theme }) => theme.tablet}) {
+    height: auto;
+  }
 `;
 
 export const BlurredOverlay = styled.div`
@@ -22,6 +26,10 @@ export const BlurredOverlay = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 0.4rem;
+  @media (max-width: ${({ theme }) => theme.tablet}) {
+    height: auto;
+    padding: 30px 0;
+  }
 `;
 
 export const MovieCard = styled.div`
@@ -29,12 +37,23 @@ export const MovieCard = styled.div`
   border-radius: 0.3rem;
   overflow: hidden;
   display: flex;
+
+  @media (max-width: ${({ theme }) => theme.tablet}) {
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+  }
 `;
 
 export const MovieCardImage = styled.img`
   border-radius: 0.3rem;
   width: 40%;
   object-fit: cover;
+
+  @media (max-width: ${({ theme }) => theme.tablet}) {
+    width: 100%;
+    margin: 0 auto;
+  }
 `;
 
 export const Content = styled.div`
@@ -53,6 +72,10 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: ${({ genreList }) =>
     genreList !== undefined ? "space-between" : "center"};
+  @media (max-width: ${({ theme }) => theme.tablet}) {
+    width: 100%;
+    margin: 0 auto;
+  }
 `;
 
 export const Tabs = styled.div`
@@ -88,6 +111,7 @@ export const Synopsis = styled.p``;
 
 export const MovieDetails = styled(motion.div)`
   display: flex;
+  flex-wrap: wrap;
 
   .info-column {
     margin: 0 15px;
@@ -142,4 +166,7 @@ export const MovieGenre = styled(motion.div)`
 
 export const Trailer = styled.iframe`
   margin-top: 0.5rem;
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    height: 300px;
+  }
 `;

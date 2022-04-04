@@ -32,6 +32,8 @@ export default function Header({ headerMovie, genreList }) {
   const [directors, setDirectors] = useState([]);
   const [headerTab, setHeaderTab] = useState("Movie Details");
   const [movieTrailerKey, setMovieTrailerKey] = useState();
+  const [headerImageOrientation, setHeaderImageOrientation] =
+    useState("portrait");
 
   useEffect(() => {
     fetchMovie();
@@ -112,6 +114,15 @@ export default function Header({ headerMovie, genreList }) {
     }
   };
 
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 1024) {
+      setHeaderImageOrientation("landscape");
+    } else {
+      setHeaderImageOrientation("portrait");
+    }
+    console.log(window.innerWidth);
+  });
+
   return (
     <>
       <BackgroundHeaderImage
@@ -122,7 +133,9 @@ export default function Header({ headerMovie, genreList }) {
             <MovieCardImage
               src={
                 headerMovie.poster_path !== null
-                  ? `${api_details.IMAGE_BASE_URL}${api_details.POSTER_SIZE}${headerMovie.poster_path}`
+                  ? headerImageOrientation === "landscape"
+                    ? `${api_details.IMAGE_BASE_URL}${api_details.POSTER_SIZE}${headerMovie.poster_path}`
+                    : `${api_details.IMAGE_BASE_URL}${api_details.BACKDROP_SIZE}${headerMovie.backdrop_path}`
                   : NoImage
               }
             />

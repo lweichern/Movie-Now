@@ -1,6 +1,6 @@
 import React from "react";
 import MovieCards from "../../components/Movies/MovieCards/MovieCards";
-import { HeaderTitle } from "./Grid.styled";
+import { GridContainer, HeaderTitle } from "./Grid.styled";
 import { Flex } from "../Flex.styled";
 import ActorCards from "../../components/MovieDetails/ActorCards/ActorCards";
 
@@ -22,18 +22,12 @@ export default function Grid({ headerTitle, movieList, castList }) {
       {castList && (
         <>
           <HeaderTitle>{headerTitle}</HeaderTitle>
-          <div
-            style={{
-              display: "grid",
-              gridTemplate: "auto auto / repeat(4, 1fr)",
-              gridGap: "2rem",
-            }}
-          >
+          <GridContainer>
             {castList &&
               castList.cast.map((cast) => {
                 return <ActorCards key={cast.id} profile={cast} />;
               })}
-          </div>
+          </GridContainer>
         </>
       )}
     </div>

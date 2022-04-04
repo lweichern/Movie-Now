@@ -5,7 +5,7 @@ export const Flex = styled(motion.div)`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  @media (max-width: ${({ theme }) => theme.tablet}) {
-    flex-direction: column;
-  }
+  // @media (max-width: ${({ theme }) => theme.tablet}) {
+  //   flex-direction: column;
+  // }
 `;

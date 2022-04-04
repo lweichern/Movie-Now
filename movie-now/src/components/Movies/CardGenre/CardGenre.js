@@ -54,7 +54,10 @@ export default function CardGenre({ genre }) {
   };
 
   return (
-    <Link to={`/movies/genre/${genre.id}`} style={{ width: "30%" }}>
+    <Link
+      to={`/movies/genre/${genre.id}`}
+      style={{ width: "400px", margin: "0 auto" }}
+    >
       <Card initial="rest" whileHover="hover" animate="rest">
         {/* <CardImage
         src={`${api_details.IMAGE_BASE_URL}${api_details.BACKDROP_SIZE}${

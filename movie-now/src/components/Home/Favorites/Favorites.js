@@ -7,9 +7,12 @@ import Grid from "../../../commonStyles/Grid/Grid";
 export default function Favorites() {
   const [movieList, setMovieList] = useState([]);
 
-  const movieIdList = JSON.parse(
-    window.localStorage.getItem("user")
-  ).favoriteMovies;
+  const movieIdList =
+    JSON.parse(window.localStorage.getItem("user")) !== null
+      ? JSON.parse(window.localStorage.getItem("user")).favoriteMovies
+      : JSON.parse(window.localStorage.getItem("user"));
+
+  console.log(movieIdList);
 
   useEffect(() => {
     movieIdList.map((item) => {
@@ -29,5 +32,13 @@ export default function Favorites() {
 
   console.log(movieList);
 
-  return <div>{movieList.length !== 0 && <Grid movieList={movieList} />}</div>;
+  return (
+    <div>
+      {movieIdList !== null ? (
+        movieList.length !== 0 && <Grid movieList={movieList} />
+      ) : (
+        <h3>Please Login to add favorite movies.</h3>
+      )}
+    </div>
+  );
 }
