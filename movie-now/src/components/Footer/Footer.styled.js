@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const FooterContainer = styled.div`
   background: #3d3d3d;
   padding: 2rem 0;
+  margin-top: 3rem;
 `;
 
 export const SocialIcons = styled.div`

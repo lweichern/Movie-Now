@@ -2,10 +2,19 @@ import React, { useEffect, useState } from "react";
 import Hero from "../Home/Hero/Hero";
 import Carousel from "../Home/Carousel/Carousel";
 import api_details from "../../API_Details";
+import { Container } from "../../commonStyles/Container.styled";
+import Favorites from "./Favorites/Favorites";
+import { useTheme } from "styled-components";
 
 export default function Index() {
   const [movies, setMovies] = useState([]);
   const [trendingMovies, setTrendingMovies] = useState([]);
+
+  const theme = useTheme();
+
+  const movieIdList = JSON.parse(
+    window.localStorage.getItem("user")
+  ).favoriteMovies;
 
   useEffect(() => {
     fetchMovie();
@@ -36,16 +45,20 @@ export default function Index() {
             image2={`${api_details.IMAGE_BASE_URL}${api_details.BACKDROP_SIZE}${movies[1].backdrop_path}`}
             image3={`${api_details.IMAGE_BASE_URL}${api_details.BACKDROP_SIZE}${movies[2].backdrop_path}`}
           />
-          <Carousel
-            movieList={movies}
-            carouselTitle="Featured Today"
-            autoplay={true}
-          />
-          <Carousel
-            movieList={trendingMovies}
-            carouselTitle="Trending Movies"
-            autoplay={true}
-          />
+          <Container>
+            <Carousel
+              movieList={movies}
+              carouselTitle="Featured Today"
+              autoplay={true}
+            />
+            <Carousel
+              movieList={trendingMovies}
+              carouselTitle="Trending Movies"
+              autoplay={true}
+            />
+            <h1 style={{ color: theme.colors.content1 }}>Favorite Movies</h1>
+            <Favorites />
+          </Container>
         </>
       )}
     </>

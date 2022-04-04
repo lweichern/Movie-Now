@@ -19,11 +19,17 @@ export const CardImage = styled(motion.img)`
   border-radius: 0.3rem;
 `;
 
-export const MovieDetails = styled.div``;
+export const MovieDetails = styled.div`
+  display: flex;
+  margin: 1rem 0.3rem;
+  justify-content: space-between;
+`;
 
 export const MovieTitle = styled(motion.h2)`
   color: ${({ theme }) => theme.colors.content1};
   padding-left: 0.8rem;
+  margin: 0;
+  width: 80%;
 `;
 
 export const MovieRatings = styled(motion.div)`

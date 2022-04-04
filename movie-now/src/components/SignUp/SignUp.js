@@ -38,6 +38,7 @@ export default function SignUp() {
       email: email,
       username: username,
       password: password,
+      favoriteMovies: [],
     };
 
     if (previousUsers == null) {

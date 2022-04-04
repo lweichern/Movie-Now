@@ -22,9 +22,21 @@ export default function Navbar() {
 
   const dispatch = useDispatch();
   const handleSignOut = () => {
+    const updatedUser = JSON.parse(window.localStorage.getItem("user"));
+    const allUsers = JSON.parse(window.localStorage.getItem("users"));
+
+    const updatedUserArray = allUsers.filter(
+      (item) => item.username !== user.username
+    );
+
+    updatedUserArray.push(updatedUser);
+
+    window.localStorage.setItem("users", JSON.stringify(updatedUserArray));
+
     window.localStorage.setItem("user", JSON.stringify(null));
 
     dispatch(logout());
+
     window.location.reload();
   };
 

@@ -75,68 +75,66 @@ export default function Carousel({ movieList, carouselTitle, autoplay }) {
 
   return (
     <>
-      <Container>
-        <Title>{carouselTitle}</Title>
-        <Swiper
-          style={{
-            "--swiper-navigation-color": theme.colors.content1,
-            "--swiper-pagination-color": theme.colors.content1,
-          }}
-          slidesPerView={3}
-          spaceBetween={30}
-          slidesPerGroup={3}
-          loop={true}
-          lazy={true}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={true}
-          modules={
-            autoplay
-              ? [Lazy, Pagination, Navigation, Autoplay]
-              : [Lazy, Pagination, Navigation]
-          }
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          className="mySwiper"
-          ref={swiperRef}
-        >
-          {movieList.map((movie) => {
-            return (
-              <SwiperSlide
-                style={{ width: "33%" }}
-                key={movie.id}
-                onMouseOver={() => setStopCarousel(true)}
-                onMouseOut={() => setStopCarousel(false)}
-              >
-                <Link to={`/movies/movie-details/${movie.id}`}>
-                  <SwiperSlideContainer
-                    initial="rest"
-                    whileHover="hover"
-                    animate="rest"
-                  >
-                    <SwiperImage
-                      data-src={`${api_details.IMAGE_BASE_URL}${api_details.BACKDROP_SIZE}${movie.backdrop_path}`}
-                      className="swiper-lazy"
-                      style={{ width: "100%", overflow: "visible" }}
-                      variants={imageVariants}
-                    />
-                    <SwiperMovieTitleContainer variants={textVariants}>
-                      {console.log(movie)}
-                      <SwiperMovieTitle>
-                        {movie.title !== undefined ? movie.title : movie.name}
-                      </SwiperMovieTitle>
-                    </SwiperMovieTitleContainer>
-                    <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                  </SwiperSlideContainer>
-                </Link>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-      </Container>
+      <Title>{carouselTitle}</Title>
+      <Swiper
+        style={{
+          "--swiper-navigation-color": theme.colors.content1,
+          "--swiper-pagination-color": theme.colors.content1,
+        }}
+        slidesPerView={3}
+        spaceBetween={30}
+        slidesPerGroup={3}
+        loop={true}
+        lazy={true}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={
+          autoplay
+            ? [Lazy, Pagination, Navigation, Autoplay]
+            : [Lazy, Pagination, Navigation]
+        }
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        className="mySwiper"
+        ref={swiperRef}
+      >
+        {movieList.map((movie) => {
+          return (
+            <SwiperSlide
+              style={{ width: "33%" }}
+              key={movie.id}
+              onMouseOver={() => setStopCarousel(true)}
+              onMouseOut={() => setStopCarousel(false)}
+            >
+              <Link to={`/movies/movie-details/${movie.id}`}>
+                <SwiperSlideContainer
+                  initial="rest"
+                  whileHover="hover"
+                  animate="rest"
+                >
+                  <SwiperImage
+                    data-src={`${api_details.IMAGE_BASE_URL}${api_details.BACKDROP_SIZE}${movie.backdrop_path}`}
+                    className="swiper-lazy"
+                    style={{ width: "100%", overflow: "visible" }}
+                    variants={imageVariants}
+                  />
+                  <SwiperMovieTitleContainer variants={textVariants}>
+                    {console.log(movie)}
+                    <SwiperMovieTitle>
+                      {movie.title !== undefined ? movie.title : movie.name}
+                    </SwiperMovieTitle>
+                  </SwiperMovieTitleContainer>
+                  <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                </SwiperSlideContainer>
+              </Link>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
     </>
   );
 }

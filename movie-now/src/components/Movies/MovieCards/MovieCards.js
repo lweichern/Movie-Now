@@ -12,6 +12,7 @@ import API_Details from "../../../API_Details";
 import { Link } from "react-router-dom";
 import NoImage from "../../../images/no_image.jpg";
 import { motion } from "framer-motion";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 export default function MovieCards({ movie }) {
   const [genreList, setGenreList] = useState([]);
@@ -27,6 +28,8 @@ export default function MovieCards({ movie }) {
       .then((data) => setGenreList(data.genres))
       .catch((err) => console.log(err));
   };
+
+  const currentUser = JSON.parse(window.localStorage.getItem("user"));
 
   const getGenreTitle = (genreId) => {
     let genreName = "";
@@ -72,11 +75,47 @@ export default function MovieCards({ movie }) {
     },
   };
 
+  const toggleFavorite = (e) => {
+    const currentUser = JSON.parse(window.localStorage.getItem("user"));
+
+    const favoriteMoviesArray = currentUser.favoriteMovies;
+
+    if (!favoriteMoviesArray.includes(movie.id)) {
+      favoriteMoviesArray.push(movie.id);
+
+      window.localStorage.setItem(
+        "user",
+        JSON.stringify({
+          email: currentUser.email,
+          username: currentUser.username,
+          password: currentUser.password,
+          favoriteMovies: favoriteMoviesArray,
+        })
+      );
+    } else {
+      const filteredFavoriteMovies = favoriteMoviesArray.filter(
+        (item) => item !== movie.id
+      );
+
+      window.localStorage.setItem(
+        "user",
+        JSON.stringify({
+          email: currentUser.email,
+          username: currentUser.username,
+          password: currentUser.password,
+          favoriteMovies: filteredFavoriteMovies,
+        })
+      );
+    }
+
+    const allUsers = JSON.parse(window.localStorage.getItem("users"));
+    const getCurrentUsers = allUsers.find((item) => currentUser);
+
+    console.log(getCurrentUsers);
+  };
+
   return (
-    <Link
-      to={`/movies/movie-details/${movie.id}`}
-      style={{ width: "23%", margin: "0.8rem 0" }}
-    >
+    <div style={{ width: "23%", margin: "0.8rem 0" }}>
       <Card
         variants={cardVariants}
         initial="rest"
@@ -84,20 +123,31 @@ export default function MovieCards({ movie }) {
         whileInView="show"
         layout
       >
-        <CardImage
-          src={
-            movie.poster_path !== null
-              ? `${API_Details.IMAGE_BASE_URL}${API_Details.POSTER_SIZE}${movie.poster_path}`
-              : NoImage
-          }
-          alt={`${movie.title} poster image`}
-          loading="lazy"
-        />
+        <Link to={`/movies/movie-details/${movie.id}`}>
+          <CardImage
+            src={
+              movie.poster_path !== null
+                ? `${API_Details.IMAGE_BASE_URL}${API_Details.POSTER_SIZE}${movie.poster_path}`
+                : NoImage
+            }
+            alt={`${movie.title} poster image`}
+            loading="lazy"
+          />
+        </Link>
+
+        <MovieRatings>{movie.vote_average}</MovieRatings>
         <MovieDetails>
           <MovieTitle>{movie.title}</MovieTitle>
-          <MovieRatings>{movie.vote_average}</MovieRatings>
+
+          {currentUser == null ? (
+            <AiOutlineHeart className="heart-icon" onClick={toggleFavorite} />
+          ) : currentUser.favoriteMovies.includes(movie.id) ? (
+            <AiFillHeart className="heart-icon" onClick={toggleFavorite} />
+          ) : (
+            <AiOutlineHeart className="heart-icon" onClick={toggleFavorite} />
+          )}
         </MovieDetails>
       </Card>
-    </Link>
+    </div>
   );
 }
