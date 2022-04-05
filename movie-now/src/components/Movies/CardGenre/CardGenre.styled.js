@@ -13,6 +13,10 @@ export const CardImage = styled(motion.img)`
   width: 100%;
   box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.5);
   border-radius: 0.3rem;
+
+  &:hover {
+    box-shadow: 3px 3px 7px ${({ theme }) => theme.colors.content2};
+  }
 `;
 
 export const CardTextTitle = styled(motion.h2)`
@@ -22,4 +26,5 @@ export const CardTextTitle = styled(motion.h2)`
   transform: translate(-50%, -50%);
   margin: 0;
   color: ${({ theme }) => theme.colors.content2};
+  text-align: center;
 `;

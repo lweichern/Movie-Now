@@ -23,10 +23,10 @@ export default function CardGenre({ genre }) {
   // Framer motion variants
   const imageVariants = {
     rest: {
-      opacity: 1,
+      opacity: 0.5,
     },
     hover: {
-      opacity: 0.3,
+      opacity: 1,
       transition: {
         duration: 0.4,
         type: "tween",
@@ -37,13 +37,13 @@ export default function CardGenre({ genre }) {
 
   const textVariants = {
     rest: {
-      opacity: 0,
-      y: "-30%",
+      opacity: 1,
+      y: "-50%",
       x: "-50%",
     },
     hover: {
-      opacity: 1,
-      y: "-50%",
+      opacity: 0,
+      y: "-30%",
       x: "-50%",
       transition: {
         duration: 0.4,
